@@ -234,6 +234,8 @@ const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level 
       // if the row has a parent, expand it too
       if (parentRow) parentRow.classList.add("expanded")
     }
+
+    return found
   }
 
   // this function updates the icon based on the expanded state
@@ -251,11 +253,33 @@ const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level 
       row.classList.toggle("expanded", isExpanded)
       if (expandIcon) expandIcon.title = isExpanded ? "Collapse" : "Expand"
     }
+
+    let hasMatch = false
     if (searchTerm !== undefined && searchTerm !== null) {
-      search(searchTerm)
+      hasMatch = search(searchTerm)
     }
 
-    if (childrenRows) childrenRows.forEach((r) => r.update({ expanded, indent, searchTerm }))
+    if (childrenRows) {
+      childrenRows.forEach((r) => {
+        if (r.update({ expanded, indent, searchTerm })) hasMatch = true
+      })
+    }
+
+    if (searchTerm !== undefined && searchTerm !== null) {
+      row.classList.toggle("has-match", hasMatch)
+      if (hasMatch) {
+        // Expand this container row so matching descendants are visible
+        if (hasChildren && !row.classList.contains("expanded")) {
+          row.classList.add("expanded")
+        }
+        // Expand the direct parent so this row is visible
+        if (parentRow && !parentRow.classList.contains("expanded")) {
+          parentRow.classList.add("expanded")
+        }
+      }
+    }
+
+    return hasMatch
   }
 
   this.element = row

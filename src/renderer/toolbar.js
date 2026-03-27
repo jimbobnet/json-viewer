@@ -1,4 +1,4 @@
-const Toolbar = function ({ expanded, indent, onChange, onSearch, showDetails }) {
+const Toolbar = function ({ expanded, indent, onChange, onSearch, onEnterSearch, showDetails }) {
   this.indent = indent || 2
   this.expanded = typeof expanded === "number" ? expanded : 2
   this.showDetails = showDetails !== false
@@ -66,37 +66,6 @@ const Toolbar = function ({ expanded, indent, onChange, onSearch, showDetails })
     onChange({ expanded: this.expanded })
   }
 
-  // INDENT BUTTON
-  const indentButton = document.createElement("button")
-  indentButton.type = "button"
-  indentButton.className = "icon-wrapper"
-  indentButton.setAttribute("title", "Increase indent")
-  indentButton.setAttribute("aria-label", "Increase indent")
-  options.appendChild(indentButton)
-  const indentIcon = document.createElement("span")
-  indentIcon.className = "icon indent"
-  indentIcon.setAttribute("aria-hidden", "true")
-  indentButton.onclick = () => {
-    this.indent += 1
-    onChange({ indent: this.indent })
-  }
-  indentButton.appendChild(indentIcon)
-
-  // OUTDENT BUTTON
-  const outdentButton = document.createElement("button")
-  outdentButton.type = "button"
-  outdentButton.className = "icon-wrapper"
-  outdentButton.setAttribute("title", "Decrease indent")
-  outdentButton.setAttribute("aria-label", "Decrease indent")
-  options.appendChild(outdentButton)
-  const outdentIcon = document.createElement("span")
-  outdentIcon.className = "icon outdent"
-  outdentIcon.setAttribute("aria-hidden", "true")
-  outdentButton.onclick = () => {
-    this.indent -= 1
-    onChange({ indent: this.indent })
-  }
-  outdentButton.appendChild(outdentIcon)
 
   // INFO BUTTON
   const infoButton = document.createElement("button")
@@ -119,6 +88,20 @@ const Toolbar = function ({ expanded, indent, onChange, onSearch, showDetails })
   }
   infoButton.appendChild(infoIcon)
 
+  // CLEAR SEARCH BUTTON
+  const clearButton = document.createElement("button")
+  clearButton.type = "button"
+  clearButton.className = "icon-wrapper search-clear"
+  clearButton.setAttribute("title", "Clear search")
+  clearButton.setAttribute("aria-label", "Clear search")
+  clearButton.textContent = "×"
+  clearButton.onclick = () => {
+    searchInput.value = ""
+    onSearch("")
+    searchInput.focus()
+  }
+  searchWrapper.appendChild(clearButton)
+
   // SEARCH INPUT
   const searchIcon = document.createElement("span")
   searchIcon.className = "icon search"
@@ -129,6 +112,9 @@ const Toolbar = function ({ expanded, indent, onChange, onSearch, showDetails })
   searchInput.oninput = (e) => {
     onSearch(e.target.value)
   }
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && onEnterSearch) onEnterSearch()
+  })
   searchWrapper.appendChild(searchInput)
 
   this.refresh = () => {

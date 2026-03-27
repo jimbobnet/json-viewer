@@ -3,8 +3,8 @@
   color: var(--base05);
   padding: 10px;
   letter-spacing: 0.5px;
-  font-family: monospace;
-  border-radius: 3px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  border-radius: 8px;
 }
 
 .toolbar {
@@ -48,6 +48,10 @@
 .toolbar .search.icon {
   margin-right: 5px;
 }
+.toolbar .search-clear {
+  margin-right: 6px;
+  color: var(--base0D);
+}
 .toolbar .search-input {
   border: none;
   background: transparent; /* Transparent background */
@@ -83,15 +87,15 @@
 }
 
 .data-row .key {
-  color: var(--base07);
+  color: #f8c555;
 }
 
 .data-row .key.number {
-  color: var(--base0C);
+  color: #f8c555;
 }
 
 .data-row .colon {
-  color: var(--base07);
+  color: #ccc;
   margin: 0 5px 0 0;
 }
 
@@ -101,10 +105,10 @@
 
 .data-row .opening-parenthesis,
 .data-row .closing-parenthesis {
-  color: var(--base07);
+  color: #ccc;
 }
 .data-row .ellipsis {
-  color: var(--base09);
+  color: #ccc;
 }
 
 .data-row.expanded > .key-value-wrapper .closing-parenthesis,
@@ -133,20 +137,20 @@
 
 .data-row .value.bool,
 .data-row .value.boolean {
-  color: var(--base0E);
+  color: #7ec699;
 }
 .data-row .value.function {
-  color: var(--base0D);
+  color: #7ec699;
 }
 .data-row .value.int,
 .data-row .value.integer {
-  color: var(--base0F);
+  color: #7ec699;
 }
 .data-row .value.float {
-  color: var(--base0B);
+  color: #7ec699;
 }
 .data-row .value.string {
-  color: var(--base09);
+  color: #7ec699;
 }
 .data-row .value.string .content {
   overflow-wrap: break-word;
@@ -159,19 +163,19 @@
 }
 
 .data-row .value.regexp {
-  color: var(--base0A);
+  color: #7ec699;
 }
 .data-row .value.nan {
-  color: var(--base08);
+  color: #7ec699;
 }
 .data-row .value.null {
-  color: var(--base0A);
+  color: #7ec699;
 }
 .data-row .value.undefined {
-  color: var(--base05);
+  color: #7ec699;
 }
 .data-row .value.date {
-  color: var(--base0D);
+  color: #7ec699;
 }
 
 .data-row .value.nan,
@@ -486,4 +490,15 @@
   height: 6px;
   width: 1px;
   background-color: var(--base0D);
+}
+
+/* Grey out non-matching rows during search */
+.searching .data-row:not(.has-match) .key,
+.searching .data-row:not(.has-match) .value,
+.searching .data-row:not(.has-match) .colon,
+.searching .data-row:not(.has-match) .opening-parenthesis,
+.searching .data-row:not(.has-match) .closing-parenthesis,
+.searching .data-row:not(.has-match) .ellipsis,
+.searching .data-row:not(.has-match) .items-size {
+  opacity: 0.3;
 }

@@ -80,7 +80,12 @@ function Container(root, options = {}) {
               this.update(options)
             },
             onSearch: (searchTerm) => {
+              containerElem.classList.toggle("searching", searchTerm !== "")
               if (dataRow) dataRow.update({ searchTerm })
+            },
+            onEnterSearch: () => {
+              const firstMatch = containerElem.querySelector(".match")
+              if (firstMatch) firstMatch.scrollIntoView({ behavior: "smooth", block: "nearest" })
             },
           })
         if (dataRow) toolbar.maxExpandLevel = dataRow.maxLevel

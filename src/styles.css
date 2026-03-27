@@ -87,15 +87,15 @@
 }
 
 .data-row .key {
-  color: #f8c555;
+  color: var(--base07);
 }
 
 .data-row .key.number {
-  color: #f8c555;
+  color: var(--base0C);
 }
 
 .data-row .colon {
-  color: #ccc;
+  color: var(--base07);
   margin: 0 5px 0 0;
 }
 
@@ -105,10 +105,10 @@
 
 .data-row .opening-parenthesis,
 .data-row .closing-parenthesis {
-  color: #ccc;
+  color: var(--base07);
 }
 .data-row .ellipsis {
-  color: #ccc;
+  color: var(--base09);
 }
 
 .data-row.expanded > .key-value-wrapper .closing-parenthesis,
@@ -137,20 +137,20 @@
 
 .data-row .value.bool,
 .data-row .value.boolean {
-  color: #7ec699;
+  color: var(--base0E);
 }
 .data-row .value.function {
-  color: #7ec699;
+  color: var(--base0D);
 }
 .data-row .value.int,
 .data-row .value.integer {
-  color: #7ec699;
+  color: var(--base0F);
 }
 .data-row .value.float {
-  color: #7ec699;
+  color: var(--base0B);
 }
 .data-row .value.string {
-  color: #7ec699;
+  color: var(--base09);
 }
 .data-row .value.string .content {
   overflow-wrap: break-word;
@@ -163,19 +163,19 @@
 }
 
 .data-row .value.regexp {
-  color: #7ec699;
+  color: var(--base0A);
 }
 .data-row .value.nan {
-  color: #7ec699;
+  color: var(--base08);
 }
 .data-row .value.null {
-  color: #7ec699;
+  color: var(--base0A);
 }
 .data-row .value.undefined {
-  color: #7ec699;
+  color: var(--base05);
 }
 .data-row .value.date {
-  color: #7ec699;
+  color: var(--base0D);
 }
 
 .data-row .value.nan,

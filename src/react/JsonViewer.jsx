@@ -10,7 +10,7 @@ const JsonViewer = ({ data, ...props }) => {
       ref.current.data = data
     }
   }, [data])
-  return <andypf-json-viewer ref={ref} {...props} />
+  return <onyphe-json-viewer ref={ref} {...props} />
 }
 
 export default JsonViewer

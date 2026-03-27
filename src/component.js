@@ -1,12 +1,12 @@
 // /**
 //  * This component supports three ways to pass the source JSON:
 //  * 1. via the "json" attribute,
-//  *    <andypf-json-viewer json='{"name": "test"}'></andypf-json-viewer>
+//  *    <onyphe-json-viewer json='{"name": "test"}'></onyphe-json-viewer>
 //  * 2. via the "json" property,
 //  *    const jsonViewer = document.createElement("json-viewer");
 //  *    jsonViewer.json = {name: "test"}
 //  * 3. via content,
-//  *    <andypf-json-viewer>{"name": "test"}</andypf-json-viewer>
+//  *    <onyphe-json-viewer>{"name": "test"}</onyphe-json-viewer>
 //  **/
 
 //#########################################NEW
@@ -214,6 +214,6 @@ class JsonViewer extends HTMLElement {
   }
 }
 
-if (!customElements.get("andypf-json-viewer")) {
-  customElements.define("andypf-json-viewer", JsonViewer)
+if (!customElements.get("onyphe-json-viewer")) {
+  customElements.define("onyphe-json-viewer", JsonViewer)
 }

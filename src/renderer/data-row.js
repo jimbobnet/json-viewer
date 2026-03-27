@@ -1,6 +1,6 @@
 import { dataType, escapeHtml } from "../data-helpers"
 
-const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level = 0, parentRow, path = "", expandedPaths = null, onPathToggle = null, expandEmpty = true }) {
+const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level = 0, parentRow, path = "", expandedPaths = null, onPathToggle = null, expandEmpty = true, showSpecialChars = false }) {
   const row = document.createElement("div")
   this.maxLevel = level
 
@@ -126,6 +126,7 @@ const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level 
         expanded,
         indent,
         expandEmpty,
+        showSpecialChars,
         onToggleExpand,
         level: level + 1,
         parentRow: row,
@@ -156,7 +157,9 @@ const DataRow = function ({ key, value, expanded, indent, onToggleExpand, level 
     valueWrapper.className = `value ${thisDataType.toLowerCase()}`
     valueEl = document.createElement("span")
     valueEl.className = "value-data"
-    valueEl.textContent = thisDataType === "string" ? `"${escapeHtml(value)}"` : value
+    valueEl.textContent = thisDataType === "string"
+      ? (showSpecialChars ? escapeHtml(JSON.stringify(value)) : `"${escapeHtml(value)}"`)
+      : value
     if (valueType) valueWrapper.appendChild(valueType)
     valueWrapper.appendChild(valueEl)
     keyValueWrapper.appendChild(valueWrapper)

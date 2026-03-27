@@ -13,7 +13,7 @@ function Container(root, options = {}) {
   // Store expanded paths when preserveExpanded is enabled
   let expandedPaths = new Set()
 
-  this.update = ({ data, expanded, indent, expandIconType, showDataTypes, showToolbar, showSize, showCopy, preserveExpanded, expandEmpty }) => {
+  this.update = ({ data, expanded, indent, expandIconType, showDataTypes, showToolbar, showSize, showCopy, preserveExpanded, expandEmpty, showSpecialChars }) => {
     // Handle preserveExpanded option
     if (preserveExpanded !== undefined) {
       cache.preserveExpanded = preserveExpanded
@@ -22,6 +22,12 @@ function Container(root, options = {}) {
     // Handle expandEmpty option
     if (expandEmpty !== undefined) {
       cache.expandEmpty = expandEmpty
+    }
+
+    // Handle showSpecialChars option — force data re-render when it changes
+    if (showSpecialChars !== undefined && cache.showSpecialChars !== showSpecialChars) {
+      cache.showSpecialChars = showSpecialChars
+      cache.dataComapreString = null
     }
 
     // DATA
@@ -46,6 +52,7 @@ function Container(root, options = {}) {
           expanded,
           indent,
           expandEmpty: cache.expandEmpty !== undefined ? cache.expandEmpty : true,
+          showSpecialChars: cache.showSpecialChars || false,
           onToggleExpand: (level) => {
             if (toolbar) toolbar.expanded = level
             cache.expanded = level

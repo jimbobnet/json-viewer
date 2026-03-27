@@ -22,14 +22,6 @@ describe("Toolbar", () => {
     const toolbar = new Toolbar({})
     expect(toolbar.element.querySelector(".minus.icon")).not.toBe(null)
   })
-  it("should render the indent icon", () => {
-    const toolbar = new Toolbar({})
-    expect(toolbar.element.querySelector(".indent.icon")).not.toBe(null)
-  })
-  it("should render the outdent icon", () => {
-    const toolbar = new Toolbar({})
-    expect(toolbar.element.querySelector(".outdent.icon")).not.toBe(null)
-  })
   it("should render the details icon", () => {
     const toolbar = new Toolbar({})
     expect(toolbar.element.querySelector(".info.icon")).not.toBe(null)
@@ -59,18 +51,6 @@ describe("Toolbar", () => {
     toolbar.maxExpandLevel = 2
     toolbar.element.querySelector(".minus.icon").click()
     expect(onChange).toHaveBeenCalledWith({ expanded: 1 })
-  })
-  it("should call the onChange callback when indent icon is clicked", () => {
-    const onChange = jest.fn()
-    const toolbar = new Toolbar({ indent: 2, onChange })
-    toolbar.element.querySelector(".indent.icon").click()
-    expect(onChange).toHaveBeenCalledWith({ indent: 3 })
-  })
-  it("should call the onChange callback when outdent icon is clicked", () => {
-    const onChange = jest.fn()
-    const toolbar = new Toolbar({ indent: 2, onChange })
-    toolbar.element.querySelector(".outdent.icon").click()
-    expect(onChange).toHaveBeenCalledWith({ indent: 1 })
   })
   it("should call the onChange callback when details icon is clicked", () => {
     const onChange = jest.fn()
